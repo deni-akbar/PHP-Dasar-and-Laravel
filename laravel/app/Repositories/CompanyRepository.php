@@ -12,6 +12,10 @@ class CompanyRepository implements CompanyInterface {
         return Company::latest()->paginate(5);
     }
 
+    public function getCompanysByname($key) {
+        return Company::where('name','LIKE',"%$key%")->get();
+    }
+
     public function createCompany($request) {
         $name="";
             if ($logo = $request->file('logo')) {
@@ -32,11 +36,16 @@ class CompanyRepository implements CompanyInterface {
     }
 
     public function updateCompany($request, $id) {
+        $name="";
+        if ($logo = $request->file('logo')) {
+            $path = $logo->store('company');
+            $name = $logo->getClientOriginalName();
+        }
         $company = Company::find($id);
         if ($company) {
             $company['name'] = $request->name;
             $company['email'] = $request->email;
-            $company['logo'] = $request->logo;
+            $company['logo'] = $name;
             $company['website'] = $request->website;
             $company->save();
             return $company;

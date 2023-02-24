@@ -14,4 +14,6 @@ interface CompanyInterface {
     public function updateCompany(CompanyRequest $request, $postId);
     // interface delete data by id
     public function deleteCompany($postId);
+
+    public function getCompanysByname($key);
 }

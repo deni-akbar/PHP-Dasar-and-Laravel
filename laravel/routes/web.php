@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('posts', PostController::class);
 Route::resource('companies', CompanyController::class);
+Route::resource('employees', EmployeeController::class);
+
+Route::get('/company/find', [CompanyController::class, 'find'])->name('company.find');

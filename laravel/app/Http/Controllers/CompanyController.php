@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\CompanyInterface;
 use App\Http\Requests\CompanyRequest;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller {
     private $companyInterface;
@@ -86,6 +87,25 @@ class CompanyController extends Controller {
         } catch (Exception $e) {
             return back()->with('failed', $e->getMessage());
         }
+    }
+
+    public function find(Request $request)
+    {
+        $term = trim($request->q);
+
+        if($term){
+            $companys = $this->companyInterface->getCompanysByname($term);
+        }else{
+            $companys = $this->companyInterface->getAllCompanys();
+        }
+        
+        $formatted_tags = [];
+
+        foreach ($companys as $tag) {
+            $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+        }
+        // dd($formatted_tags);
+        return response()->json($formatted_tags);
     }
 
 }
