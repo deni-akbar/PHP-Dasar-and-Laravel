@@ -32,8 +32,12 @@
                 <form action="{{ route('employee.import_employee') }}" method="post" enctype="multipart/form-data" class="mt-2">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="file" name="file" class="form-control" placeholder="file import employee" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
+                        <input type="file" name="file" class="form-control form-control-sm" placeholder="file import employee" aria-describedby="button-addon2">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Import</button><br>
+                        
+                    </div>
+                    <div class="input-group">
+                        <span>Download format excel <a href="{{asset('example/import_employee.xlsx')}}">DISINI</a> </span>
                     </div>
                 </form>
             </div>
