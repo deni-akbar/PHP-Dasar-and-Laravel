@@ -28,6 +28,7 @@
             </div>
             <div class="col-xl-6 text-end">
                 <a href="{{ route('companies.create') }}" class="btn btn-primary"> Create Company </a>
+                <a href="{{ route('company.cetak_pdf') }}" class="btn btn-danger">Cetak pdf</a>
             </div>
         </div>
         <div class="table-responsive">

@@ -27,7 +27,15 @@
                 @endif
             </div>
             <div class="col-xl-6 text-end">
-                <a href="{{ route('employees.create') }}" class="btn btn-primary"> Create Post </a>
+                <a href="{{ route('employees.create') }}" class="btn btn-primary"> Create Employee </a>
+                <a href="{{ route('employee.cetak_pdf') }}" class="btn btn-danger">Cetak pdf</a>
+                <form action="{{ route('employee.import_employee') }}" method="post" enctype="multipart/form-data" class="mt-2">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="file" name="file" class="form-control" placeholder="file import employee" aria-describedby="button-addon2">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="table-responsive">
@@ -67,6 +75,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {!! $employees->links() !!}
         </div>
     </div>
 @endsection

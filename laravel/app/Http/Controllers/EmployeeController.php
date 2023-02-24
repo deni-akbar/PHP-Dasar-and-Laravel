@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\EmployeeInterface;
 use App\Http\Requests\EmployeeRequest;
+use App\Imports\EmployeeImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
+use PDF;
 
 class EmployeeController extends Controller {
     private $employeeInterface;
@@ -88,4 +92,17 @@ class EmployeeController extends Controller {
         }
     }
 
+    public function cetak_pdf()
+    {
+        $employees = $this->employeeInterface->getAllEmployees();
+ 
+    	$pdf = PDF::loadview('employees.pdf',['employees'=>$employees]);
+    	return $pdf->download('laporan-employee-pdf'.date('ymdhis').".pdf");
+    }
+
+    public function import_employee(Request  $request){
+        Excel::import(new EmployeeImport, $request->file('file'));
+
+        return back()->with('success', 'Data berhasil diimport!');
+    }
 }

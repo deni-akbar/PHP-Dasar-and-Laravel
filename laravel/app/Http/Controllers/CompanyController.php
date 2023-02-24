@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Interfaces\CompanyInterface;
 use App\Http\Requests\CompanyRequest;
 use Illuminate\Http\Request;
+use PDF;
 
 class CompanyController extends Controller {
     private $companyInterface;
@@ -108,4 +109,13 @@ class CompanyController extends Controller {
         return response()->json($formatted_tags);
     }
 
+    public function cetak_pdf()
+    {
+        $companys = $this->companyInterface->getAllCompanys();
+ 
+    	$pdf = PDF::loadview('companys.pdf',['companies'=>$companys]);
+    	return $pdf->download('laporan-company-pdf'.date('ymdhis').".pdf");
+    }
+
+    
 }
