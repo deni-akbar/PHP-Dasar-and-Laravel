@@ -29,6 +29,6 @@ Route::resource('companies', CompanyController::class);
 Route::resource('employees', EmployeeController::class);
 
 Route::get('/company/find', [CompanyController::class, 'find'])->name('company.find');
-Route::get('/employee/cetakPDF', [EmployeeController::class, 'cetak_pdf'])->name('employee.cetak_pdf');
+Route::post('/employee/cetakPDF', [EmployeeController::class, 'cetak_pdf'])->name('employee.cetak_pdf');
 Route::get('/company/cetakPDF', [CompanyController::class, 'cetak_pdf'])->name('company.cetak_pdf');
 Route::post('/employee/import_employee', [EmployeeController::class, 'import_employee'])->name('employee.import_employee');

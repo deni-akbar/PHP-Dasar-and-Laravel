@@ -9,9 +9,11 @@ interface EmployeeInterface {
     // interface create postingan
     public function createEmployee(EmployeeRequest $request);
     // interface get data by id
-    public function getEmployeeById($postId);
+    public function getEmployeeById($employeeId);
     // interface update data by id
-    public function updateEmployee(EmployeeRequest $request, $postId);
+    public function updateEmployee(EmployeeRequest $request, $employeeId);
     // interface delete data by id
-    public function deleteEmployee($postId);
+    public function deleteEmployee($employeeId);
+
+    public function getEmployeeByCompany($companyId);
 }

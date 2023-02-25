@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Interfaces\EmployeeInterface;
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\EmployeeImportRequest;
+use App\Http\Requests\EmployeeExportRequest;
 use App\Imports\EmployeeImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -93,10 +94,10 @@ class EmployeeController extends Controller {
         }
     }
 
-    public function cetak_pdf()
+    public function cetak_pdf(EmployeeExportRequest $request)
     {
-        $employees = $this->employeeInterface->getAllEmployees();
- 
+        $employees = $this->employeeInterface->getEmployeeByCompany($request->company_id);
+        // dd($employees);
     	$pdf = PDF::loadview('employees.pdf',['employees'=>$employees]);
     	return $pdf->download('laporan-employee-pdf'.date('ymdhis').".pdf");
     }

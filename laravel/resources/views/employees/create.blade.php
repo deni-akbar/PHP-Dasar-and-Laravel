@@ -45,7 +45,9 @@
                                 <div class="form-group my-2">
                                     <label for="company_id" class="form-label">Company <span class="text-danger">*</span></label>
                                     <select name="company_id" @if ($view) disabled @endif class="form-control @error('company_id') is-invalid @enderror" id="company_id">   
-                                        <option value="{{$employee->company_id}}">{{$employee->company->name}}</option>
+                                       @if (isset($employee))
+                                       <option value="{{$employee->company_id}}">{{$employee->company->name}}</option>
+                                       @endif
                                     </select>
                                         @error('company_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -71,7 +73,7 @@
 <script>
     $( document ).ready(function() {
         $('#company_id').select2({
-  placeholder: 'Select an item',
+  placeholder: 'Select company',
   ajax: {
     url: "{{route('company.find')}}",
     dataType: 'json',

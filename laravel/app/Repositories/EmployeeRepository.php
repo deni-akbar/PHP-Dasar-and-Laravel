@@ -42,4 +42,9 @@ class EmployeeRepository implements EmployeeInterface {
             return $employee->delete();
         }
     }
+
+    public function getEmployeeByCompany($companyId) {
+        return Employee::where('company_id',$companyId)->get();
+    }
+    
 }
