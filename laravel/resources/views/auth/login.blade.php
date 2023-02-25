@@ -65,6 +65,24 @@
                             </div>
                         </div>
                     </form>
+
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center text-center mt-2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <span>
+                                Email: <b>admin@transisi.id </b> 
+                            </span><br>
+                            <span>
+                                Password: <b>transisi</b> 
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
