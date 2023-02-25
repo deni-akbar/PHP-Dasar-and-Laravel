@@ -35,7 +35,7 @@
             <table class="table table-striped table-light">
                 <thead>
                     <tr>
-                        <th scope="col" width="10%">#</th>
+                        <th scope="col" width="10%">ID</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Email</th>
                         <th scope="col">Logo</th>
@@ -70,7 +70,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {!! $companys->links() !!}
+            {!! $companys->links('pagination::bootstrap-4') !!}
         </div>
     </div>
 @endsection

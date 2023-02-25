@@ -50,7 +50,8 @@
                                 <div class="form-group my-2">
                                     <label for="website" class="form-label">Website <span class="text-danger">*</span></label>
                                     <input type="text" name="website" @if ($view) disabled @endif
-                                        class="form-control @error('website') is-invalid @enderror" id="website" >
+                                        class="form-control @error('website') is-invalid @enderror" id="website" 
+                                        value="{{ old('website') ?? ($company->website ?? '') }}">
                                         @error('website')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

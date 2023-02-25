@@ -32,7 +32,10 @@
                 <form action="{{ route('employee.import_employee') }}" method="post" enctype="multipart/form-data" class="mt-2">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="file" name="file" class="form-control form-control-sm" placeholder="file import employee" aria-describedby="button-addon2">
+                        <input type="file" name="excel" class="form-control form-control-sm @error('excel') is-invalid @enderror" placeholder="file import employee" aria-describedby="button-addon2">
+                        @error('excel')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <button class="btn btn-primary" type="submit" id="button-addon2">Import</button><br>
                         
                     </div>
@@ -46,7 +49,7 @@
             <table class="table table-striped table-light">
                 <thead>
                     <tr>
-                        <th scope="col" width="10%">#</th>
+                        <th scope="col" width="10%">ID</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Email</th>
                         <th scope="col">Nama Perusahaan</th>
@@ -78,8 +81,10 @@
                         </tr>
                     @endforelse
                 </tbody>
+                
             </table>
-            {!! $employees->links() !!}
+            
         </div>
+        {!! $employees->links('pagination::bootstrap-4') !!}
     </div>
 @endsection

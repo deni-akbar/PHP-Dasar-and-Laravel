@@ -44,8 +44,8 @@
 
                                 <div class="form-group my-2">
                                     <label for="company_id" class="form-label">Company <span class="text-danger">*</span></label>
-                                    <select name="company_id" @if ($view) disabled @endif
-                                        class="form-control @error('company_id') is-invalid @enderror" id="company_id">   
+                                    <select name="company_id" @if ($view) disabled @endif class="form-control @error('company_id') is-invalid @enderror" id="company_id">   
+                                        <option value="{{$employee->company_id}}">{{$employee->company->name}}</option>
                                     </select>
                                         @error('company_id')
                                         <div class="invalid-feedback">{{ $message }}</div>

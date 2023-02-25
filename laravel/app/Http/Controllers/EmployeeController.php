@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\EmployeeInterface;
 use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeImportRequest;
 use App\Imports\EmployeeImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -100,8 +101,8 @@ class EmployeeController extends Controller {
     	return $pdf->download('laporan-employee-pdf'.date('ymdhis').".pdf");
     }
 
-    public function import_employee(Request  $request){
-        Excel::import(new EmployeeImport, $request->file('file'));
+    public function import_employee(EmployeeImportRequest  $request){
+        Excel::import(new EmployeeImport, $request->file('excel'));
 
         return back()->with('success', 'Data berhasil diimport!');
     }
